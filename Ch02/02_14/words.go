@@ -14,11 +14,20 @@ func main() {
 	`
 	// fmt.Println(text)
 
+	// words := strings.Fields(text)
+	// counts := map[string]int{} // word -> count
+	// for _, word := range words {
+	// 	counts[strings.ToLower(word)]++
+	// }
+
+	// fmt.Println(counts)
+
 	words := strings.Fields(text)
-	counts := map[string]int{} // word -> count
+	cnt := map[string] int {}
 	for _, word := range words {
-		counts[strings.ToLower(word)]++
+		cnt[strings.ToLower(word)] ++
 	}
 
-	fmt.Println(counts)
+	fmt.Println(cnt)
+
 }
