@@ -32,6 +32,7 @@ func TestMany(t *testing.T) {
 		{2.0, 1.414214},
 		{9.0, 3.0},
 	}
+	// fmt.Printf("%T", testCases)
 
 	for _, tc := range testCases {
 		t.Run(fmt.Sprintf("%f", tc.value), func(t *testing.T) {

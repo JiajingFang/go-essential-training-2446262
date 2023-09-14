@@ -6,7 +6,7 @@ import (
 	"net/http"
 )
 
-func returnType(url string) {
+func returnType(url string, out chan string) {
 	resp, err := http.Get(url)
 	if err != nil {
 		fmt.Printf("%s -> error: %s\n", url, err)
@@ -15,7 +15,7 @@ func returnType(url string) {
 
 	defer resp.Body.Close()
 	ctype := resp.Header.Get("content-type")
-	fmt.Printf("%s -> %s", url, ctype)
+	out <- fmt.Sprintf("%s -> %s", url, ctype)
 }
 
 func main() {
@@ -28,8 +28,14 @@ func main() {
 	// Create response channel
 	ch := make(chan string)
 	for _, url := range urls {
-		go returnType(url)
+		go returnType(url, ch)
 	}
 
 	// TODO: Wait using channel
+	for range urls {
+		text := <-ch
+		fmt.Println(text)
+
+	}
+
 }
