@@ -25,7 +25,7 @@ func main() {
 	}
 	defer resp.Body.Close()
 
-	const mb = 1 << 20
+	const mb = 10 //1 << 20
 	r := io.LimitReader(resp.Body, mb)
 	io.Copy(os.Stdout, r)
 }
